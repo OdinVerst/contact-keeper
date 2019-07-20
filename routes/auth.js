@@ -6,12 +6,20 @@ const bcrypt = require('bcryptjs');
 const config = require('config');
 
 const User = require('../models/User');
+const auth = require('../midlleware/auth');
 
 //@route    GET api/auth
 //@desc     Get logged in user
 //@access   Private
-router.get('/', (res, req) => {
-	req.send(`Register user`);
+router.get('/', auth, async (req, res) => {
+	try {
+		const user = await User.findById(req.user.id).select('-password');
+		res.json(user);
+	} catch (err) {
+		console.log(err.message);
+		res.status(500).send('Server Error');
+	}
+	res.send(`Register user`);
 });
 
 //@route    POST api/auth
