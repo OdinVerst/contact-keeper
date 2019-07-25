@@ -47,11 +47,16 @@ const ContactState = props => {
 		distpatch({ type: ADD_CONTACT, payload: contact });
 	};
 
+	const deleteContact = id => {
+		distpatch({ type: DELETE_CONTACT, payload: id });
+	};
+
 	return (
 		<ContactContext.Provider
 			value={{
 				contacts: state.contacts,
-				addContact
+				addContact,
+				deleteContact
 			}}
 		>
 			{props.children}
