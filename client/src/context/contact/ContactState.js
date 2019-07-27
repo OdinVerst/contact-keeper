@@ -52,6 +52,10 @@ const ContactState = props => {
 		distpatch({ type: DELETE_CONTACT, payload: id });
 	};
 
+	const updateContact = contact => {
+		distpatch({ type: UPDATE_CONTACT, payload: contact });
+	};
+
 	const setCurrent = contact => {
 		distpatch({ type: SET_CURRENT, payload: contact });
 	};
@@ -67,6 +71,7 @@ const ContactState = props => {
 				current: state.current,
 				addContact,
 				deleteContact,
+				updateContact,
 				setCurrent,
 				clearCurrent
 			}}
