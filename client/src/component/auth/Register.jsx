@@ -13,12 +13,16 @@ const Register = () => {
 		password2: ''
 	});
 
+	const { error, clearErrors, register } = authContext;
+	const { setAlert } = alertsContext;
+
 	useEffect(() => {
-		if (authContext.error === 'User alredy exists') {
-			alertsContext.setAlert(authContext.error, 'danger');
-			authContext.clearErrors();
+		if (error === 'User alredy exists') {
+			setAlert(error, 'danger');
+			clearErrors();
 		}
-	}, [alertsContext, authContext, authContext.error]);
+		// eslint-disable-next-line
+	}, [error]);
 
 	const { name, email, password, password2 } = user;
 
@@ -29,22 +33,16 @@ const Register = () => {
 	const onSubmit = e => {
 		e.preventDefault();
 		if (name === '' || email === '' || password === '' || password2 === '') {
-			alertsContext.setAlert('Please enter all fileds', 'danger');
+			setAlert('Please enter all fileds', 'danger');
 		} else if (password !== password2) {
-			alertsContext.setAlert('Password don`t match', 'danger');
+			setAlert('Password don`t match', 'danger');
 		} else {
-			console.log({
-				name,
-				email,
-				password
-			});
-			authContext.register({
+			register({
 				name,
 				email,
 				password
 			});
 		}
-		console.log('Register');
 	};
 
 	return (
