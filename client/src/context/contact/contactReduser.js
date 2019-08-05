@@ -1,6 +1,7 @@
 import {
 	ADD_CONTACT,
 	DELETE_CONTACT,
+	CONTACT_ERROR,
 	SET_CURRENT,
 	CLEAR_CURRENT,
 	UPDATE_CONTACT,
@@ -19,6 +20,8 @@ export default (state, action) => {
 					contact => contact.id !== action.payload
 				)
 			};
+		case CONTACT_ERROR:
+			return { ...state, errros: action.payload };
 		case UPDATE_CONTACT:
 			return {
 				...state,

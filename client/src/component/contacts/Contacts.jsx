@@ -15,12 +15,12 @@ const Contacts = () => {
 			<TransitionGroup>
 				{filtered !== null
 					? filtered.map(item => (
-							<CSSTransition key={item.id} timeout={500} classNames="item">
+							<CSSTransition key={item._id} timeout={500} classNames="item">
 								<ContactItem contact={item} />
 							</CSSTransition>
 					  ))
 					: contacts.map(item => (
-							<CSSTransition key={item.id} timeout={500} classNames="item">
+							<CSSTransition key={item._id} timeout={500} classNames="item">
 								<ContactItem contact={item} />
 							</CSSTransition>
 					  ))}
