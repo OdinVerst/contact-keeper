@@ -69,8 +69,8 @@ const ContactState = props => {
 			}
 		};
 		try {
-			await axios.put(`/api/contacts/${contact._id}`, contact, config);
-			distpatch({ type: UPDATE_CONTACT, payload: contact });
+			const res = await axios.put(`/api/contacts/${contact._id}`, contact, config);
+			distpatch({ type: UPDATE_CONTACT, payload: res.data });
 		} catch (err) {
 			distpatch({ type: CONTACT_ERROR, payload: err.response.data.msg });
 		}
